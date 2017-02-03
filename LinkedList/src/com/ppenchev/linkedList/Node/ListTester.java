@@ -8,11 +8,16 @@ public class ListTester {
 		
 		list.add("2");
 		list.add("3");
+		list.add("33");
+		list.add("16");
 		list.add("4");
-		list.add("34");
-		
-		System.out.println(list.find("34"));
+		list.add("13");
+		list.add("55");
 	
+		
+		System.out.println(list.toString());
+		list.removeNode("3");
+		System.out.println(list.toString());
 		
 	}
 

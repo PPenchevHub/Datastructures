@@ -1,10 +1,13 @@
 package com.ppenchev.linkedList.Node;
 
+import java.security.GeneralSecurityException;
+
 public class LinkedListBase {
 
 	private static int counter;
 	private Node head;
 
+	// default constructor
 	public LinkedListBase() {
 
 	}
@@ -34,7 +37,7 @@ public class LinkedListBase {
 		}
 		counter++;
 	}
-	 
+
 	/*
 	 * check if a given data is in the list
 	 * 
@@ -44,11 +47,11 @@ public class LinkedListBase {
 
 		if (head != null) {
 
-			Node current = head.getNext();
+			Node current = head;
 			while (current.getNext() != null) {
-				if (current.getData() == data)
+				if (current.getNext().getData() == data) {
 					return true;
-				else {
+				} else {
 					current = current.getNext();
 
 				}
@@ -59,7 +62,42 @@ public class LinkedListBase {
 
 		return false;
 	}
-	
+
+	public boolean removeNode(Object data) {
+
+		if (head != null) {
+
+			// check if its in the list at all;
+			if (find(data)) {
+
+				Node current = head;
+				Node temp;
+
+				//loop trough the list
+				while (current.getNext() != null) {
+					//if the node is found replace it with the temporary
+					if (current.getData() == data) {
+						temp = current.getNext();
+						current.setNext(temp.getNext());
+						counter--;
+						
+						System.out.println(data + " removed from the list!");
+						return true;
+
+					} else {
+						current = current.getNext();
+					}
+
+				}
+
+			} else
+				System.out.println("No such data in the list!");
+			return false;
+
+		}
+		return false;
+
+	}
 
 	public String toString() {
 
@@ -67,9 +105,9 @@ public class LinkedListBase {
 
 		if (head != null) {
 
-			Node current = head.getNext();
-			while (current != null) {
-				print += current.getData().toString() + " ";
+			Node current = head;
+			while (current.getNext() != null) {
+				print += current.getNext().getData().toString() + " ";
 				current = current.getNext();
 
 			}
